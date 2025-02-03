@@ -1,0 +1,10 @@
+version: "3"
+
+tasks:
+  build:
+    desc: Apple Silicon build
+    env:
+      GOOS: darwin
+      GOARCH: arm64
+    cmds:
+      - go build -o './build/vigilante'
