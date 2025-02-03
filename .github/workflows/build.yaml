@@ -2,15 +2,22 @@ name: build workflow
 
 on: [push]
 
+# on:
+#   pull_request:
+#     types: [closed]
+#     branches:
+#       - main
+
 jobs:
   build:
+    if: github.event.pull_request.merged == true
+
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Go 1.23.x
-        uses: actions/setup-go@v5
+      - uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
 
@@ -21,3 +28,14 @@ jobs:
 
       - run: task build
 
+      - id: date
+        run: echo "date=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.date.outputs.date }}
+          name: Release ${{ steps.date.outputs.date }}
+          draft: false
+          prerelease: false
+          generate_release_notes: false
+          files: './build/vigilante'
