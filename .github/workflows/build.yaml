@@ -19,7 +19,5 @@ jobs:
       - name: Install Task
         uses: arduino/setup-task@v2
 
-      - name: build
-        run:
-          - task build
+      - run: task build
 
