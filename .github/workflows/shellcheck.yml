@@ -1,0 +1,17 @@
+name: shellcheck workflow
+
+on: [push]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  shellcheck:
+    if: ${{ false }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: shellcheck ./intune/macos.sh

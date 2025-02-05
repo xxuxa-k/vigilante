@@ -1,10 +1,17 @@
 version: "3"
 
 tasks:
-  build:
-    desc: Apple Silicon build
+  build-darwin-arm64:
     env:
       GOOS: darwin
       GOARCH: arm64
     cmds:
-      - go build -o './build/vigilante'
+      - go build -o './build/vigilante-darwin-arm64'
+
+  build-windows-amd64:
+    env:
+      GOOS: windows
+      GOARCH: amd64
+    cmds:
+      - go build -o './build/vigilante-windows-amd64'
+
