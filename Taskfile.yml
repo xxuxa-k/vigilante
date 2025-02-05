@@ -13,5 +13,5 @@ tasks:
       GOOS: windows
       GOARCH: amd64
     cmds:
-      - go build -o './build/vigilante-windows-amd64'
+      - go build -o './build/vigilante-windows-amd64.exe'
 
